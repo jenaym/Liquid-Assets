@@ -13,6 +13,8 @@ export default props => {
                     <FormComponent 
                         formInputs={props.formInputs} 
                         handleInputChange={props.handleInputChange}
+                        postToInventory={props.postToInventory}
+
                     />
                 </Grid>
 
