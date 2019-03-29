@@ -17,7 +17,10 @@ export default props => {
                 </Grid>
 
                 <Grid item xs>
-                    <ImageComponent />
+                    <ImageComponent 
+                    formInputs={props.formInputs} 
+                    handleInputChange={props.handleInputChange}
+                    />
                 </Grid>
 
             </Grid>

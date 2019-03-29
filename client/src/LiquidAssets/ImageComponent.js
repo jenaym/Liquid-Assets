@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography, Grid } from '@material-ui/core';
+// import App from '../App.js'
 
 const styles = {
     card: {
@@ -27,19 +28,20 @@ const MediaCard = (props) => {
 
                 <CardContent>
 
-                    <Typography gutterBottom 
-                        variant="h5" 
-                        component="h2" 
+                    <Typography gutterBottom
+                        variant="h5"
+                        component="h2"
                         align="center"
                     >
-                            Pappy Van Winkle 15 yr
+                        {props.formInputs.brandStyle}
                     </Typography>
 
-                    <Typography 
-                        component="p" 
+                    <Typography
+                        component="p"
                         align="center"
+                        // onChange={props.handleInputChange}
                     >
-                        damn that shit is smooth!
+                        Why is the rum gone?
                     </Typography>
 
                 </CardContent>
@@ -47,21 +49,21 @@ const MediaCard = (props) => {
             </CardActionArea>
 
             <CardActions>
-                <Grid item xs 
+                <Grid item xs
                     align='left'
-                    style={{marginLeft: 40}}
+                    style={{ marginLeft: 40 }}
                 >
                     <Button size="small" color="primary">
                         Add To Orders
                     </Button>
                 </Grid>
 
-                <Grid item xs 
+                <Grid item xs
                     align='right'
-                    style={{marginRight: 50}}
+                    style={{ marginRight: 50 }}
                 >
                     <Button size="small" color="primary" align="right">
-                            Track
+                        Track
                     </Button>
                 </Grid>
 
