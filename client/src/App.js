@@ -1,12 +1,41 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
+import setAuthToken from './utils/setAuthToken';
+import { setCurrentUser, logoutUser } from './actions/authActions';
+import { Provider } from 'react-redux';
+import store from './store';
 import './App.css';
-import LiquidAssets from './LiquidAssets';
-import NavbarComponent from './NavbarComponent';
+import LiquidAssets from './LiquidAssets'
+import NavbarComponent from './NavbarComponent'
+import Signup from './components/user/register';
+import Login from './components/user/login';
+import PrivateRoute from './components/user/privateRoute';
+
 import axios from 'axios';
 // import FormComponent from "./LiquidAssets/FormComponent";
 // import ImageComponent from "./LiquidAssets/ImageComponent";
 // import TableComponent from "./LiquidAssets/TableComponent";
 
+
+// check for token
+if (localStorage.jwtToken) {
+  setAuthToken(localStorage.jwtToken);
+
+  // decode the token and get user info
+  const decoded = jwtDecode(localStorage.jwtToken);
+
+  // set current user w/ decoded token and isAuthenticated
+  store.dispatch(setCurrentUser(decoded));
+
+  // check for an expired token
+  const currentTime = Date.now() / 1000;
+  if (decoded.exp < currentTime) {
+    // force the user log out
+    store.dispatch(logoutUser());
+    window.location.href = '/login';
+  }
+}
 
 
 class App extends Component {
@@ -72,23 +101,39 @@ class App extends Component {
   render() {
 
     return (
-      <div className="App">
+      <Provider store={store}>
+        <Router>
+          <div className="App">
 
-        <NavbarComponent />
+            <NavbarComponent />
 
-        <LiquidAssets
-          formInputs={this.state.formInputs}
-          handleInputChange={this.handleInputChange}
-          postToInventory={this.postToInventory}
-        />
-        {/* <FormComponent 
-        handleInputChange={this.handleInputChange}
+            <div className="container">
+              <Switch>
+                <Route exact path="/signup" component={Signup} />
+                <Route exact path="/login" component={Login} />
+                <Route
+                  exact path="/"
+                  render={(props) => 
+                    <LiquidAssets
+                      {...props}
+                      formInputs={this.state.formInputs}
+                      handleInputChange={this.handleInputChange}
+                      postToInventory={this.postToInventory}
+                    />
+                  }
+                />
+              </Switch>
+            </div>
 
-        />
-        <ImageComponent />
-        <TableComponent /> */}
+            {/* <FormComponent 
+            handleInputChange={this.handleInputChange}
+            />
+            <ImageComponent />
+            <TableComponent /> */}
 
-      </div>
+          </div>
+        </Router>
+      </Provider>
     );
   }
 }

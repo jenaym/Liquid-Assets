@@ -1,5 +1,6 @@
 //
-// A middleware function for protecting a route
+// A function for protecting a route
+// for use with LocalStrategy
 //
 module.exports = function(req, res, next) {
 	if (req.isAuthenticated()) {

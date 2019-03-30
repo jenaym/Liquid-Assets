@@ -19,15 +19,15 @@ module.exports = {
       },
       costPerBottle: {
         type: Sequelize.DECIMAL(10,2),
-        allowNull: false,
+        // allowNull: false,
       },
       sizeML: {
         type: Sequelize.DECIMAL(10,2),
-        allowNull: false,
+        // allowNull: false,
       },
       sizeOZ: {
         type: Sequelize.DECIMAL(10,2),
-        allowNull: false,
+        // allowNull: false,
       },
       percentBottleRemaining: {
         type: Sequelize.DECIMAL(10,2),
