@@ -102,6 +102,7 @@ class MuiVirtualizedTable extends React.PureComponent {
 
     getUserInventory = () => {
         return axios.get('/api/inventory')
+           
             .then((response) => {
                 console.log(response);
             })
@@ -180,14 +181,46 @@ MuiVirtualizedTable.defaultProps = {
 
 const WrappedVirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
 
-const data = [
-    ['Scotch', 'Glenlivet 18yr', 750, 25.36, 77.84, 15.36, 0.605, 3.07, 47.15, 2.605, 202.77],
-    // ['Scotch', 'Glenlivet 18yr', 750, 25.36, 77.84, 15.36, 0.605, 3.07, 47.15, 2.605, 202.77],
-    // ['Scotch', 'Glenlivet 18yr', 750, 25.36, 77.84, 15.36, 0.605, 3.07, 47.15, 2.605, 202.77],
-    // ['Scotch', 'Glenlivet 18yr', 750, 25.36, 77.84, 15.36, 0.605, 3.07, 47.15, 2.605, 202.77],
-    // ['Scotch', 'Glenlivet 18yr', 750, 25.36, 77.84, 15.36, 0.605, 3.07, 47.15, 2.605, 202.77],
-];
 
+var data = [];
+function getUserInventory() {
+    return axios.get('/api/inventory') 
+        .then((response) => {
+            console.log(response);
+            var input = response.data;
+
+                let inventoryData = Object.values(input)
+                // for (var i = 0; i < inventoryData.length; i++) {
+                    var output = inventoryData.map(function(obj) {
+                        return Object.keys(obj).sort().map(function(key) { 
+                          return obj[key];
+                        });
+                      });
+
+                    for (var i = 0; i < output.length; i++) {
+                        // userData.push(output[i]);
+                        data.push(output[i]);
+                    }
+
+            
+            
+            // console.log(userData);
+            console.log(data);
+
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}
+
+// const data = [
+//     ['Scotch', 'Glenlivet 18yr', 750, 25.36, 77.84, 15.36, 0.605, 3.07, 47.15, 2.605, 202.77],
+//     // ['Scotch', 'Glenlivet 18yr', 750, 25.36, 77.84, 15.36, 0.605, 3.07, 47.15, 2.605, 202.77],
+//     // ['Scotch', 'Glenlivet 18yr', 750, 25.36, 77.84, 15.36, 0.605, 3.07, 47.15, 2.605, 202.77],
+//     // ['Scotch', 'Glenlivet 18yr', 750, 25.36, 77.84, 15.36, 0.605, 3.07, 47.15, 2.605, 202.77],
+//     // ['Scotch', 'Glenlivet 18yr', 750, 25.36, 77.84, 15.36, 0.605, 3.07, 47.15, 2.605, 202.77],
+// ];
+getUserInventory();
 let id = 0;
 function createData(type, brandStyle, bottleSizeML, bottleSizeOZ, bottleCost, ozLeft, percentLeft, costPerOZ, openBottleValue, totalBottlesPerBrandStyle, totalValuePerBrandStyle) {
     id += 1;
@@ -196,10 +229,15 @@ function createData(type, brandStyle, bottleSizeML, bottleSizeOZ, bottleCost, oz
 
 const rows = [];
 
-for (let i = 0; i < 200; i += 1) {
-    const randomSelection = data[Math.floor(Math.random() * data.length)];
-    rows.push(createData(...randomSelection));
+for (let i = 0; i < data.length; i += 1) {
+//     const randomSelection = data[Math.floor(Math.random() * data.length)];
+    rows.push(createData(...data));
 }
+// rows.push(createData(data));
+// for (let i = 0; i < 200; i+= 1) {
+    
+//     rows.push(createData(...data));
+// }
 
 function ReactVirtualizedTable (data, header) {
     return (

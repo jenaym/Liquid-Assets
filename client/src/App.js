@@ -12,6 +12,9 @@ import Signup from './components/user/register';
 import Login from './components/user/login';
 import PrivateRoute from './components/user/privateRoute';
 
+import ReactVirtualizedTable from './LiquidAssets/TableComponent'
+
+
 import axios from 'axios';
 // import FormComponent from "./LiquidAssets/FormComponent";
 // import ImageComponent from "./LiquidAssets/ImageComponent";
@@ -25,8 +28,10 @@ if (localStorage.jwtToken) {
   // decode the token and get user info
   const decoded = jwtDecode(localStorage.jwtToken);
 
+
   // set current user w/ decoded token and isAuthenticated
   store.dispatch(setCurrentUser(decoded));
+
 
   // check for an expired token
   const currentTime = Date.now() / 1000;
@@ -36,6 +41,7 @@ if (localStorage.jwtToken) {
     window.location.href = '/login';
   }
 }
+var data = [];
 
 
 class App extends Component {
@@ -92,7 +98,53 @@ class App extends Component {
       .then((response) => {
         console.log(response)
       })
+      
   }
+ 
+  getUserInventory = () => {
+    return axios.get('/api/inventory') 
+        .then((response) => {
+            console.log(response);
+            
+            var input = response.data;
+
+                let inventoryData = Object.values(input)
+                // for (var i = 0; i < inventoryData.length; i++) {
+                    var output = inventoryData.map(function(obj) {
+                        return Object.keys(obj).sort().map(function(key) { 
+                          return obj[key];
+                        });
+                      });
+
+                    for (var i = 0; i < output.length; i++) {
+                        // userData.push(output[i]);
+                        data.push(output[i]);
+                    }
+                    
+                    let id = 0;
+                    function createData(type, brandStyle, bottleSizeML, bottleSizeOZ, bottleCost, ozLeft, percentLeft, costPerOZ, openBottleValue, totalBottlesPerBrandStyle, totalValuePerBrandStyle) {
+                        id += 1;
+                        return { id, type, brandStyle, bottleSizeML, bottleSizeOZ, bottleCost, ozLeft, percentLeft, costPerOZ, openBottleValue, totalBottlesPerBrandStyle, totalValuePerBrandStyle };
+                    }
+                    
+                    const rows = [];
+                    
+                    for (let i = 0; i < 200; i += 1) {
+                        const randomSelection = data[Math.floor(Math.random() * data.length)];
+                        rows.push(createData(...randomSelection));
+                    }
+
+            
+            
+            // console.log(userData);
+            console.log(data);
+
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}
+
 
   check = () => {
     console.log(this.state)
@@ -119,6 +171,7 @@ class App extends Component {
                       formInputs={this.state.formInputs}
                       handleInputChange={this.handleInputChange}
                       postToInventory={this.postToInventory}
+                      getUserInventory={this.getUserInventory}
                     />
                   }
                 />
@@ -130,6 +183,9 @@ class App extends Component {
             />
             <ImageComponent />
             <TableComponent /> */}
+            <ReactVirtualizedTable
+              data={this.getUserInventory}
+            ></ReactVirtualizedTable> 
 
           </div>
         </Router>
