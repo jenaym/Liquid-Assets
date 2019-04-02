@@ -2,7 +2,7 @@ import React from 'react';
 import { AppBar, Toolbar, Typography, Button, Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { logoutUser } from './actions/authActions';
+import { logoutUser } from './store/actions/authActions';
 
 const NavbarComponent = (props) => {
     function onLogoutClick(e) {

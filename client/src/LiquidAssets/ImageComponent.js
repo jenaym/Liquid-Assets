@@ -32,7 +32,7 @@ const MediaCard = (props) => {
                         component="h2" 
                         align="center"
                     >
-                            Pappy Van Winkle 15 yr
+                            {props.formInputs.brandStyle}
                     </Typography>
 
                     <Typography 

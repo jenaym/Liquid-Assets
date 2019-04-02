@@ -48,7 +48,7 @@ const calc = {
     async function userInputs(data) {
 
         const alcoholInfo = await alcohol(data.brandStyle, data.sizeML);
-        console.log("alcoholInfo: " + alcoholInfo);
+        console.log("alcoholInfo: ", alcoholInfo);
         // alcoholInfo.type = data.type;
         // alcoholInfo.brandStyle = data.brandStyle;
 
@@ -63,7 +63,7 @@ const calc = {
 
         
         const userInventory = {};
-
+        userInventory.userId = data.userId
         userInventory.type = alcoholInfo.type;
         userInventory.brandStyle = alcoholInfo.brandStyle;
         userInventory.costPerBottle = parseFloat(data.costPerBottle);

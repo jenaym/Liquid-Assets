@@ -19,7 +19,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 import classnames from 'classnames';
 
-import { loginUser } from '../../actions/authActions';
+import { loginUser } from '../../store/actions/authActions';
 
 
 //

@@ -18,8 +18,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
-import { registerUser } from '../../actions/authActions';
-
+import { registerUser } from '../../store/actions/authActions';
 //
 // Styles for the Sign Up box
 //
