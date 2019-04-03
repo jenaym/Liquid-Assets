@@ -1,0 +1,38 @@
+.Table {
+    border-spacing: 0px;
+    background: #fff;
+    box-shadow: 0 1px 0 0 rgba(22, 29, 37, 0.05);
+
+  }
+  
+  .DataTable {
+    position: relative; 
+
+  }
+  
+  .Cell {
+    border: 1px solid #f4f6f8;
+    padding: 4px;
+    text-align: left;
+    vertical-align: top;
+  }
+  
+  .Cell-fixed {
+    position: absolute;
+    top: auto;
+    left: 0;
+    width: 145px;
+    white-space: unset;
+    text-align: left;
+    backface-visibility: hidden;
+    background: #fff;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .ScrollContainer {
+    overflow-x: auto;
+    margin-left: 145px;
+    overflow-y: scroll;
+  }

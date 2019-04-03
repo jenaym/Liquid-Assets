@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { withStyles, TableCell, TableSortLabel, Paper, Grid } from '@material-ui/core';
 import { AutoSizer, Column, SortDirection, Table } from 'react-virtualized';
 import axios from 'axios';
+import Table from 'react-bootstrap/Table'
 
 const styles = theme => ({
     table: {
@@ -44,7 +45,43 @@ const nateStyles = {
     }
 }
 
+const InventoryData = props => {
+    return (
+        <Grid container style={nateStyles.gridContainer}>
+            <Grid item xs>
+                <Paper style={nateStyles.paper}>
+                    <Table responsive>
+                        <thead>
+                            <tr>
+                                <th>Alcohol Type</th>
+                                <th>Brand/Style</th>
+                                <th>Size mL</th>
+                                <th>Oz Per Bottle</th>
+                                <th>Cost Per Bottle</th>
+                                <th>Oz Left in Open Bottle</th>
+                                <th>Percent Left in Open Bottle</th>
+                                <th>Cost Per Oz</th>
+                                <th>Open Bottle Value</th>
+                                <th>Total Bottles in Inventory</th>
+                                <th>Total Value in Stock</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </Table>
+                </Paper>
+            </Grid>
+        </Grid>
+    )
+}
+
+
 class MuiVirtualizedTable extends React.PureComponent {
+
+    componentDidMount() {
+        getInventory();
+    }
     getRowClassName = ({ index }) => {
         const { classes, rowClassName, onRowClick } = this.props;
 
@@ -100,16 +137,16 @@ class MuiVirtualizedTable extends React.PureComponent {
     };
 
 
-    getUserInventory = () => {
-        return axios.get('/api/inventory')
+    // getUserInventory = () => {
+    //     return axios.get('/api/inventory')
            
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }
+    //         .then((response) => {
+    //             console.log(response);
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         });
+    // }
 
     render() {
         const { classes, columns, ...tableProps } = this.props;
@@ -182,8 +219,9 @@ MuiVirtualizedTable.defaultProps = {
 const WrappedVirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
 
 
+
 var data = [];
-function getUserInventory() {
+function getInventory() {
     return axios.get('/api/inventory') 
         .then((response) => {
             console.log(response);
@@ -220,26 +258,26 @@ function getUserInventory() {
 //     // ['Scotch', 'Glenlivet 18yr', 750, 25.36, 77.84, 15.36, 0.605, 3.07, 47.15, 2.605, 202.77],
 //     // ['Scotch', 'Glenlivet 18yr', 750, 25.36, 77.84, 15.36, 0.605, 3.07, 47.15, 2.605, 202.77],
 // ];
-getUserInventory();
 let id = 0;
 function createData(type, brandStyle, bottleSizeML, bottleSizeOZ, bottleCost, ozLeft, percentLeft, costPerOZ, openBottleValue, totalBottlesPerBrandStyle, totalValuePerBrandStyle) {
     id += 1;
     return { id, type, brandStyle, bottleSizeML, bottleSizeOZ, bottleCost, ozLeft, percentLeft, costPerOZ, openBottleValue, totalBottlesPerBrandStyle, totalValuePerBrandStyle };
 }
 
-const rows = [];
+var rows = [];
 
-for (let i = 0; i < data.length; i += 1) {
-//     const randomSelection = data[Math.floor(Math.random() * data.length)];
-    rows.push(createData(...data));
-}
-// rows.push(createData(data));
-// for (let i = 0; i < 200; i+= 1) {
-    
+// for (let i = 0; i < data.length; i += 1) {
+// //     const randomSelection = data[Math.floor(Math.random() * data.length)];
 //     rows.push(createData(...data));
 // }
+// rows.push(createData(data));
+for (let i = 0; i < 200; i+= 1) {
+    var randomSelection = data[Math.floor(Math.random() * data.length)];
+    rows.push(createData(...data));
+}
 
 function ReactVirtualizedTable (data, header) {
+
     return (
         <Grid container style={nateStyles.gridContainer}>
             <Grid item xs>

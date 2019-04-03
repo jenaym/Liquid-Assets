@@ -6,6 +6,7 @@ import BrandStyleIntegrationAutosuggest
 import BottleSizeIntegrationAutosuggest
   from './BottleSizeIntegrationAutosuggest';
 
+
 const styles = theme => ({
   container: {
     display: 'flex',
@@ -125,7 +126,7 @@ const FormComponent = props => {
               <Button
                 variant="contained"
                 className="button"
-                onClick={props.getUserInventory}
+                onClick={props.postThenGet}
               >
 
                 Send To Inventory

@@ -1,8 +1,9 @@
 import React, { Fragment } from "react"
 import FormComponent from "./FormComponent"
-import TableComponent from "./TableComponent"
+// import ReactVirtualizedTable from "./TableComponent"
 import ImageComponent from "./ImageComponent"
 import { Grid } from '@material-ui/core'
+// import DataTable from "../DataTable";
 // import BrandStyleIntegrationAutosuggest from "./BrandStyleIntegrationAutosuggest";
 
 export default props => {
@@ -33,9 +34,13 @@ export default props => {
 
             <Grid container>
 
-                <Grid item xs>
-                    <TableComponent header />
-                </Grid>
+                {/* <Grid item xs>
+                     <DataTable
+                        headers={props.headers}
+                        rows={props.rows}
+                        
+                    />
+                </Grid> */}
 
             </Grid>
 
