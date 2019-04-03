@@ -1,7 +1,10 @@
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const JwtStrategy = require("passport-jwt").Strategy;
+const ExtractJwt = require("passport-jwt").ExtractJwt;
 const bcrypt = require("bcryptjs");
+const config = require("../../config/config");
 const db = require("../db/models");
 
 //
@@ -42,8 +45,10 @@ class UserAuth {
   //
   batchInitialize() {
     this.initSession();
-    this.initPassport();
-    this.usePassport();
+    this.initPassportWithJwtStrategy();
+    this.usePassport({ useSession: false });
+    // this.initPassportWithLocalStrategy();
+    // this.usePassport({ useSession: true });
     this.initUser();
   }
 
@@ -72,7 +77,7 @@ class UserAuth {
   //
   // User login validation process using "passport" based on a local strategy
   //
-  initPassport() {
+  initPassportWithLocalStrategy() {
     // Attempt to authenticate through an email address
     passport.use(new LocalStrategy({
         usernameField: "email"
@@ -105,7 +110,33 @@ class UserAuth {
             });
           });
       }));
+  }
 
+  //
+  // User login validation process using "passport" through JWT strategy
+  //
+  initPassportWithJwtStrategy() {
+    const opts = {
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      secretOrKey: config.jwtkey
+    };
+
+    passport.use(
+      new JwtStrategy(opts, (jwt_payload, done) => {
+        db.UserTable.findByPk(jwt_payload.id)
+          .then(user => {
+            if (user) return done(null, user);
+            return done(null, false);
+          })
+          .catch(err => console.log(err));
+      })
+    );
+  }
+
+  //
+  // Use passport as middleware
+  //
+  usePassport(params = { useSession: false }) {
     // Serialize the user session
     passport.serializeUser(function (user, done) {
       done(null, user.id);
@@ -122,14 +153,12 @@ class UserAuth {
           console.log(err);
         });
     });
-  }
 
-  //
-  // Use passport as middleware
-  //
-  usePassport() {
     this.app.use(passport.initialize());
-    this.app.use(passport.session());
+
+    if (params.useSession) {
+      this.app.use(passport.session());
+    }
   }
 }
 

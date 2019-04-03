@@ -12,10 +12,14 @@ export default props => {
 
                 <Grid item xs>
                     <FormComponent
-                        getBoozeSuggestions={props.getBoozeSuggestions}
-                        autosuggest={props.autosuggest}
+                        // getBoozeSuggestions={props.getBoozeSuggestions}
+                        // autosuggest={props.autosuggest}
                         formInputs={props.formInputs}
                         handleInputChange={props.handleInputChange}
+                        postToInventory={props.postToInventory}
+                        getUserInventory={props.getUserInventory}
+                        postThenGet={props.postThenGet}
+
                     />
                 </Grid>
 

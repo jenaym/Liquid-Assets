@@ -36,6 +36,9 @@ app.use("/api/user/register", apiUserReg);
 app.use("/api/inventory", apiInventory);
 app.use("/api/alcohol", apiAlcohol);
 
+// * * * TEST AUTHENTICATION * * *
+require("./routes/api/test/auth")(app);
+
 // Send every other request to the React app
 // Define any API routes before this runs
 // *** UNCOMMENT THIS ROUTE ONLY WHEN PRODUCTION DISPLOYMENT ***
