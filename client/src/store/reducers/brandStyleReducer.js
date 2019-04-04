@@ -6,13 +6,15 @@ import {
   UPDATE_BRAND_STYLE,
   CLEAR_SUGGESTIONS,
   LOAD_SUGGESTIONS_BEGIN,
-  MAYBE_UPDATE_SUGGESTIONS
+  MAYBE_UPDATE_SUGGESTIONS,
+  GET_BRAND_STYLE_ERROR,
  } from '../actions/types';
 
 const initialState = {
   brandStyle: '',
   suggestions: [],
   isLoading: false,
+  error: '',
 };
 
 export default function userInputReducer(state = initialState, action = {}) {
@@ -21,6 +23,12 @@ export default function userInputReducer(state = initialState, action = {}) {
       return {
         ...state,
         brandStyle: action.value,
+      };
+  
+    case GET_BRAND_STYLE_ERROR:
+      return {
+        ...state,
+        error: action.value,
       };
 
     case CLEAR_SUGGESTIONS:

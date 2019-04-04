@@ -51,6 +51,7 @@ class BottleSizeIntegrationAutosuggest extends React.Component {
     this.state = {
       inputValue: '',
       suggestions: [],
+      errors: {},
     };
   }
 
@@ -73,6 +74,23 @@ class BottleSizeIntegrationAutosuggest extends React.Component {
   componentDidMount () {
     this.initSuggestions();
   }
+
+  componentDidUpdate() {
+    // this is added primarily for clearing
+    // Note the two variables have circular dependancy
+    if (this.state.inputValue !== this.props.bottleSize) {
+      this.setState({
+        inputValue: this.props.bottleSize
+      })
+    }
+    if (this.state.errors !== this.props.error) {
+      this.setState({errors: this.props.error});
+    }
+    if (this.state.suggestions.length === 0) {
+      this.initSuggestions ();
+    }
+  }
+
 
   getSuggestions(value) {
     const inputValue = deburr (value.trim ()).toLowerCase ();
@@ -109,12 +127,11 @@ class BottleSizeIntegrationAutosuggest extends React.Component {
   };
 
   handleChange = name => (event, {newValue}) => {
-    if (this.state.suggestions.length === 0) {
-      this.initSuggestions ();
-    }
     this.setState ({
       [name]: newValue,
     });
+    event.target.name = "bottleSize";
+    this.props.onChange(event);
     this.props.updateBottleSize(newValue);
   };
 
@@ -131,15 +148,28 @@ class BottleSizeIntegrationAutosuggest extends React.Component {
       renderSuggestion,
     };
 
+    let invalidInput = false;
+    let label = this.props.label;
+
+    // error: true,
+    // label: '<error message>'
+    if (this.state.errors) {
+      invalidInput = true;
+      label = this.state.errors;
+    }
+
     return (
       <Autosuggest
         {...autosuggestProps}
         inputProps={{
           classes,
           label: this.props.label,
+          // label: label,
           placeholder: this.props.placeholder,
           value: this.state.inputValue,
           onChange: this.handleChange('inputValue'),
+          // ...inputValidation,
+          error: invalidInput,
         }}
         theme={{
           container: classes.container,
@@ -160,13 +190,15 @@ class BottleSizeIntegrationAutosuggest extends React.Component {
 BottleSizeIntegrationAutosuggest.propTypes = {
   classes: PropTypes.object.isRequired,
   updateBottleSize: PropTypes.func.isRequired,
-  brandStyle: PropTypes.object.isRequired,
-  bottleSize: PropTypes.object.isRequired,
+  brandStyle: PropTypes.string.isRequired,
+  bottleSize: PropTypes.string.isRequired,
+  // error: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  brandStyle: state.brandStyle,
-  bottleSize: state.bottleSize,
+  brandStyle: state.brandStyle.brandStyle,
+  bottleSize: state.bottleSize.bottleSize,
+  error: state.bottleSize.error
 });
 
 export default (connect(mapStateToProps, { updateBottleSize }))(withStyles(styles)(BottleSizeIntegrationAutosuggest));

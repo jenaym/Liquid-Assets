@@ -17,7 +17,7 @@ class AlcoholListController {
     //
     findAll(req, res) {
         db.Alcohol
-            .findAll({ attributes: ['brandstyle', 'sizeML'] })
+            .findAll({ attributes: ['brandstyle', 'sizeML', 'image', 'tastingNotes'] })
             .then(data => res.json(data))
             .catch(err => res.status(422).json(err));
     }

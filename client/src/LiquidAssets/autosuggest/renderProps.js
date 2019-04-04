@@ -14,7 +14,7 @@ export function renderInputComponent (inputProps) {
 
   return (
     <TextField
-      id="standard-name"
+      // id="standard-name"
       variant="outlined"
       className={classes.textField}
       fullWidth

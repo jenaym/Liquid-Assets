@@ -30,7 +30,7 @@ module.exports = {
           const avatarUrl = gravatar.url(req.body.email, {
             size: '200',
             rating: 'pg',
-            default: 'mp'
+            default: 'monsterid'
           });
 
           const newUser = {

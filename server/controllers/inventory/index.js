@@ -17,12 +17,12 @@ class UserInventoryController {
   // Return all rows of UserInventory
   //
   findAll(req, res) {
-    console.log("GETTING USER SPECIFIC DATA", "-----------------------", req.query);
-    db.UserInventory.findAll({
-      where: {
-        userId: req.query.userId
-      }
-    })
+    db.UserInventory.findAll(
+      {
+        where: {
+          userId: req.query.userId
+        }
+      })
       .then(data => {
         // console.log(data);
         return res.json(data)
@@ -47,15 +47,16 @@ class UserInventoryController {
   //
   // Math calculation required to push percentBottleRemaining, currentValueOfBottle, totalBottles, totalInventoryValue data in to UserInventories Table
 
-  
+
   create(req, res) {
-    res.json(userInputs(req.body));
-  //   db.UserInventory.create(userInventory)
-  //     .then(data => {
-  //       console.log("POSTING TO MYSQL, USER DATA", "==================", data)
-  //       return res.json(data)
-  //     })
-  //     .catch(err => res.status(422).json(err));
+    // res.json(userInputs(req.body));
+    userInputs(req, res);
+    //   db.UserInventory.create(userInventory)
+    //     .then(data => {
+    //       console.log("POSTING TO MYSQL, USER DATA", "==================", data)
+    //       return res.json(data)
+    //     })
+    //     .catch(err => res.status(422).json(err));
   }
 
   //
@@ -67,7 +68,7 @@ class UserInventoryController {
         id: req.params.id
       }
     };
-  
+
     db.UserInventory.update(req.body, options)
       .then(data => res.json(data))
       .catch(err => res.status(422).json(err));

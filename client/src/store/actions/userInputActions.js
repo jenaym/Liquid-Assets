@@ -9,7 +9,9 @@ import {
   UPDATE_BOTTLE_SIZE,
   CLEAR_SUGGESTIONS,
   MAYBE_UPDATE_SUGGESTIONS,
-  LOAD_SUGGESTIONS_BEGIN
+  LOAD_SUGGESTIONS_BEGIN,
+  GET_BRAND_STYLE_ERROR,
+  GET_BOTTLE_SIZE_ERROR,
 } from './types';
 import queryBooze from '../../LiquidAssets/autosuggest/queryBooze';
 
@@ -54,6 +56,21 @@ export function updateBottleSize(value) {
     type: UPDATE_BOTTLE_SIZE,
     value,
   };
+}
+
+export function validateBrandStyle(value) {
+  return ({
+    type: GET_BRAND_STYLE_ERROR, 
+    value
+  });
+}
+
+
+export function validateBottleSize(value) {
+  return ({
+    type: GET_BOTTLE_SIZE_ERROR, 
+    value
+  });
 }
 
 export function clearSuggestions() {
