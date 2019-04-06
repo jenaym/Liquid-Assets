@@ -6,6 +6,7 @@ import BrandStyleIntegrationAutosuggest
     from './BrandStyleIntegrationAutosuggest';
 import BottleSizeIntegrationAutosuggest
     from './BottleSizeIntegrationAutosuggest';
+import { grey, pink, purple } from '@material-ui/core/colors'
 
 const styles = theme => ({
     container: {
@@ -42,6 +43,9 @@ const nateStyles = {
 };
 
 const FormComponent = props => {
+    // OverridesCss () => {
+        
+    // }
     return (
         <Grid container style={nateStyles.gridContainer}>
             <Grid item xs>
@@ -139,11 +143,13 @@ const FormComponent = props => {
                             <Fab
                                 variant="contained"
                                 color='secondary'
+                                style={{ backgroundColor: purple['A400'] }}
+                                mini='true'
                                 className="button"
                                 onClick={props.postThenGet}
-                                disabled={!props.formInputs.unopenedBottles || !props.formInputs.bottleCost || !props.formInputs.bottleWeight}
+                                // disabled={!props.formInputs.unopenedBottles || !props.formInputs.bottleCost || !props.formInputs.bottleWeight}
                             >
-                                <AddIcon />
+                                <AddIcon style={{color: grey[50]}} />
                             </Fab>
                         </Grid>
                         <div className="container ml-auto text-danger">

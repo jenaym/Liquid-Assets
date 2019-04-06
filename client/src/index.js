@@ -10,16 +10,12 @@ import setAuthToken from './store/utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './store/actions/authActions';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 // import Hue from '@material-ui/core/colors/HUE'
-import { blueGrey, cyan } from '@material-ui/core/colors';
-
-
-const primaryGrey = blueGrey[500];
-const secondaryCyan = cyan[400]
+import { blueGrey, cyan, grey } from '@material-ui/core/colors';
 
 const theme = createMuiTheme ({
   palette: {
     primary: {
-      main: blueGrey[600]
+      main: blueGrey[800]
     },
     secondary: {
       main: cyan[400],
@@ -29,10 +25,22 @@ const theme = createMuiTheme ({
   },
   typography: {
     fontFamily: [
-      'Iceland'
+      'Iceland',
+      'Russo One',
+      'VT323',
+      'Iceberg',
+      'Hind Madurai',
+      'Roboto'
     ].join(',')
   },
-  type: 'dark'
+  overrides: {
+    Fab: {
+      text: {
+        color: grey[50] 
+      }
+    }
+  }
+
 })
 
 // check for token

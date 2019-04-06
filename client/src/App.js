@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { updateBrandStyle, updateBottleSize, validateBrandStyle, validateBottleSize } from './store/actions/userInputActions';
-import './App.css';
 import LiquidAssets from './LiquidAssets';
 import NavbarComponent from './NavbarComponent';
 import Signup from './components/user/register';

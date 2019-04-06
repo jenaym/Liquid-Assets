@@ -5,7 +5,8 @@ import ImageComponent from "./ImageComponent";
 import { Grid } from '@material-ui/core';
 import { CSVLink } from "react-csv";
 import RunningTotal from './RunningTotal';
-// import BrandStyleIntegrationAutosuggest from "./BrandStyleIntegrationAutosuggest";
+import { blueGrey, cyan, grey, pink, purple } from '@material-ui/core/colors';
+import CloudDownloadIcon from '@material-ui/icons/CloudDownload' 
 
 let headers = [
     { label: 'Alcohol Type', key: 'type' },
@@ -30,8 +31,6 @@ export default props => {
                 <Grid item xs>
 
                     <FormComponent
-                        // getBoozeSuggestions={props.getBoozeSuggestions}
-                        // autosuggest={props.autosuggest}
                         formInputs={props.formInputs}
                         handleInputChange={props.handleInputChange}
                         postToInventory={props.postToInventory}
@@ -85,19 +84,15 @@ export default props => {
                         filename={"my-inventory.csv"}
                         className="btn btn-primary"
                         target="_blank"
-                        style={{ marginRight: 75, boxShadow: '20px 10px 20px'  }}
+                        style={{ marginRight: 90, marginTop: 10, boxShadow: `4px 6px 2px ${grey[400]}`, fontFamily: 'Iceberg', backgroundColor: purple['A400'], border: 'none', borderRadius: 25, padding: 13  }}
                         onClick={() => {
                             console.log("You click the link"); // 👍🏻 Your click handling logic
                         }}
                     >
-                        Download Inventory
+                        <CloudDownloadIcon />
                     </CSVLink>
                 </Grid>
             </Grid>
-            {/* <IntegrationAutosuggest
-                getBoozeSuggestions={props.getBoozeSuggestions}
-                autosuggest={props.autosuggest}
-            /> */}
         </Fragment>
     )
 }

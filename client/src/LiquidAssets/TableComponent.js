@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles, TableCell, TableSortLabel, Paper, Grid } from '@material-ui/core';
 import { AutoSizer, Column, SortDirection, Table } from 'react-virtualized';
-
+import { blueGrey, cyan, grey, pink, purple, yellow } from '@material-ui/core/colors';
 
 // import { CSVLink, CSVDownload } from "react-csv";
 import axios from 'axios';
@@ -22,7 +22,7 @@ const styles = theme => ({
     },
     tableRowHover: {
         '&:hover': {
-            backgroundColor: theme.palette.grey[800],
+            backgroundColor: yellow[200],
         },
     },
     tableCell: {
@@ -107,7 +107,7 @@ class MuiVirtualizedTable extends React.PureComponent {
                 component="div"
                 className={classNames(classes.tableCell, classes.flexContainer, classes.noClick)}
                 variant="head"
-                style={{ height: headerHeight }}
+                style={{ height: headerHeight, fontFamily: 'Iceberg', fontSize: 12, color: grey[900], backgroundColor: blueGrey[50] }}
                 align={columns[columnIndex].numeric || false ? 'right' : 'left'}
             >
                 {inner}
@@ -258,12 +258,12 @@ function ReactVirtualizedTable({userInventoryData}) {
                                 numeric: true,
                             }, {
                                 width: 140,
-                                label: 'Oz Left In Open Bottle',
+                                label: 'Oz Left',
                                 dataKey: 'ozRemaining',
                                 numeric: true,
                             }, {
                                 width: 140,
-                                label: 'Percent Left In Open Bottle',
+                                label: 'Percent Left',
                                 dataKey: 'percentBottleRemaining',
                                 numeric: true,
                             }, {
@@ -273,17 +273,17 @@ function ReactVirtualizedTable({userInventoryData}) {
                                 numeric: true,
                             }, {
                                 width: 140,
-                                label: 'Open Bottle Value',
+                                label: 'Bottle Value',
                                 dataKey: 'currentValueOfBottle',
                                 numeric: true,
                             }, {
                                 width: 140,
-                                label: 'Total Bottles In Inventory',
+                                label: 'Total Bottles',
                                 dataKey: 'totalBottles',
                                 numeric: true,
                             }, {
                                 width: 140,
-                                label: 'Total Value In Stock',
+                                label: 'Total Value',
                                 dataKey: 'totalInventoryValue',
                                 numeric: true,
                             }

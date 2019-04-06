@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography, Grid } from '@material-ui/core';
-
+import { blueGrey, cyan, grey, pink, purple } from '@material-ui/core/colors';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'  
 const styles = {
     card: {
         maxWidth: 345,
@@ -11,6 +12,16 @@ const styles = {
     media: {
         height: 525,
     },
+    typography: {
+        fontFamily: [
+            'Iceland',
+            'Russo One',
+            'VT323',
+            'Iceland',
+            'Hind Madurai',
+            'Roboto'
+        ].join(',')
+    }
 };
 
 const MediaCard = (props) => {
@@ -18,7 +29,7 @@ const MediaCard = (props) => {
     return (
         <Card 
             className={classes.card}
-            elevation={15}
+            elevation={24}
         >
 
             <CardActionArea>
@@ -34,6 +45,8 @@ const MediaCard = (props) => {
                         variant="h5" 
                         component="h2" 
                         align="center"
+                        className={classes.typography}
+                        style={{ fontFamily: 'Russo One' }}
                     >
                             {props.formInputs.brandStyle}
                     </Typography>
@@ -41,6 +54,7 @@ const MediaCard = (props) => {
                     <Typography 
                         component="p" 
                         align="center"
+                        style={{fontSize: 18, fontFamily: 'Iceland'}}
                     >
                         {props.tastingNotes}
                     </Typography>
@@ -52,10 +66,13 @@ const MediaCard = (props) => {
             <CardActions>
                 <Grid item xs 
                     align='center'
-                    style={{}}
                 >
-                    <Button size="small" color="secondary">
-                        Add To Orders Coming Soon!
+                    <Button 
+                        size="small" 
+                        color="secondary"
+                        style={{fontSize: 16, color: cyan[400] }}
+                    >
+                        {/* <AddShoppingCartIcon /> */}UPDATE ORDER
                     </Button>
                 </Grid>
 
