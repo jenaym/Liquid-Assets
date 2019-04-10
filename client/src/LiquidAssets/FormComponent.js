@@ -143,11 +143,11 @@ const FormComponent = props => {
                             <Fab
                                 variant="contained"
                                 color='secondary'
-                                style={{ backgroundColor: purple['A400'] }}
+                                // style={{ backgroundColor: purple['A400'] }}
                                 mini='true'
                                 className="button"
                                 onClick={props.postThenGet}
-                                // disabled={!props.formInputs.unopenedBottles || !props.formInputs.bottleCost || !props.formInputs.bottleWeight}
+                                disabled={!props.formInputs.unopenedBottles || !props.formInputs.bottleCost || !props.formInputs.bottleWeight}
                             >
                                 <AddIcon style={{color: grey[50]}} />
                             </Fab>
