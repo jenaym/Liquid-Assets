@@ -25,7 +25,7 @@ module.exports = {
       .then(user => {
         if (user) {
           errors.email = "A user with the same email address already exists";
-          res.json(errors);
+          return res.status(404).json(errors);
         } else {
           const avatarUrl = gravatar.url(req.body.email, {
             size: '200',
@@ -56,7 +56,7 @@ module.exports = {
                   });
                 })
                 .catch(error => {
-                  res.json({
+                  res.status(500).json({
                     error: "Unable to register the user: " + error
                   });
                   return;

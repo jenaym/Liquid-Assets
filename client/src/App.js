@@ -36,9 +36,17 @@ class App extends Component {
 
   componentDidMount() {
     this.getAlcohol();
+    if (this.props.auth.isAuthenticated) {
+      this.getUserInventory();
+    }
   }
 
   componentDidUpdate() {
+    // this is still a bit overkill at very first for a new user w/o any inventory entry 
+    if (this.props.auth.isAuthenticated && this.state.userInventoryData.length === 0) {
+      this.getUserInventory();
+    }
+
     if (this.state.formInputs.brandStyle !== this.props.brandStyle
         || this.state.formInputs.bottleSize !== this.props.bottleSize) {
       this.setState(state => ({
@@ -48,19 +56,23 @@ class App extends Component {
           bottleSize: this.props.bottleSize
         } 
       }));
-    }
-    if (this.props.brandStyle.length > 4) {
-      const query = `brandStyle=${this.props.brandStyle}`
-      getImageAndNotes(query).then(imagesAndNotes =>{
-        console.log(imagesAndNotes)
-        if (imagesAndNotes.length > 0) {
-          const {image, tastingNotes}=imagesAndNotes[0]
-          this.setState({
-            image: image,
-            tastingNotes: tastingNotes
-          })
-        }
-      }) 
+
+      if (this.props.brandStyle.length > 4) {
+        const query = `brandStyle=${this.props.brandStyle}`
+        getImageAndNotes(query).then(imagesAndNotes => {
+          console.log(imagesAndNotes)
+          if (imagesAndNotes.length > 0) {
+            const {
+              image,
+              tastingNotes
+            } = imagesAndNotes[0]
+            this.setState({
+              image: image,
+              tastingNotes: tastingNotes
+            })
+          }
+        })
+      }
     }
   }
 
@@ -196,7 +208,7 @@ class App extends Component {
     console.log(this.state);
   };
 
-  render() {
+  render() {  
     return (
       <Router>
         <div className="App">

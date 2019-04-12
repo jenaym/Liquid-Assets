@@ -133,13 +133,13 @@ class SignUp extends Component {
           </Typography>
           <form  onSubmit={this.onSubmit}>
             <FormControl margin="normal" fullWidth>
-              <InputLabel htmlFor="name">Your Name</InputLabel>
+              <InputLabel htmlFor="name" className="text-white">Your Name</InputLabel>
               <Input 
                 id="name"
                 name="name"
                 value={this.state.name}
                 onChange={this.onChange}
-                className={classnames("form-control form-control-lg", {
+                className={classnames("form-control form-control-lg text-dark", {
                   "is-invalid": errors.name
                 })}
                 autoFocus
@@ -147,13 +147,13 @@ class SignUp extends Component {
               {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
             </FormControl>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="email">Email Address</InputLabel>
+              <InputLabel htmlFor="email" className="text-white">Email Address</InputLabel>
               <Input
                 id="email"
                 name="email"
                 value={this.state.email}
                 onChange={this.onChange}
-                className={classnames("form-control form-control-lg", {
+                className={classnames("form-control form-control-lg text-dark", {
                   "is-invalid": errors.email
                 })}
                 autoComplete="email"
@@ -161,14 +161,14 @@ class SignUp extends Component {
               {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
             </FormControl>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="password">Password</InputLabel>
+              <InputLabel htmlFor="password" className="text-white">Password</InputLabel>
               <Input
                name="password"
                type="password"
                id="password"
                value={this.state.password}
                onChange={this.onChange}
-               className={classnames("form-control form-control-lg", {
+               className={classnames("form-control form-control-lg text-dark", {
                 "is-invalid": errors.password
                })}
                autoComplete="current-password"
@@ -176,14 +176,14 @@ class SignUp extends Component {
               {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
             </FormControl>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="password2">Confirm Password</InputLabel>
+              <InputLabel htmlFor="password2" className="text-white">Confirm Password</InputLabel>
               <Input 
                 name="password2"
                 type="password"
                 id="password2"
                 value={this.state.password2}
                 onChange={this.onChange}
-                className={classnames("form-control form-control-lg", {
+                className={classnames("form-control form-control-lg text-dark", {
                   "is-invalid": errors.password2
                  })}
                 />

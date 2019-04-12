@@ -19,7 +19,7 @@ const RunningTotal = props => {
                         component='h3' 
                         color='secondary'
                         align='center'>
-                            ${props.runningTotal} 
+                            ${props.runningTotal.toFixed(2)} 
                     </Typography>
             </Typography>
             <Typography component="p">

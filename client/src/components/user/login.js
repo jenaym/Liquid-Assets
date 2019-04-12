@@ -21,7 +21,6 @@ import classnames from 'classnames';
 
 import { loginUser } from '../../store/actions/authActions';
 
-
 //
 // Styles for the Sign Up box
 //
@@ -51,6 +50,7 @@ const styles = theme => ({
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing.unit,
+    color: 'black',
   },
   submit: {
     marginTop: theme.spacing.unit * 1,
@@ -133,29 +133,30 @@ class SignIn extends Component {
           </Typography>
           <form className={this.classes.form} onSubmit={this.onSubmit}>
             <FormControl margin="normal" fullWidth>
-              <InputLabel htmlFor="email">Email Address</InputLabel>
+              <InputLabel htmlFor="email" className="text-white">Email Address</InputLabel>
               <Input 
                 id="email"
                 name="email"
                 value={this.state.email}
                 onChange={this.onChange}
-                className={classnames("form-control form-control-lg", {
+                className={classnames("form-control form-control-lg text-dark", {
                   "is-invalid": errors.email
                 })}
                 autoComplete="email"
+                variant="filled"
                 autoFocus
               />
               {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
             </FormControl>
             <FormControl margin="normal" fullWidth>
-              <InputLabel htmlFor="password">Password</InputLabel>
+              <InputLabel htmlFor="password" className="text-white">Password</InputLabel>
               <Input
                 name="password"
                 type="password"
                 id="password"
                 value={this.state.password}
                 onChange={this.onChange}
-                className={classnames("form-control form-control-lg", {
+                className={classnames("form-control form-control-lg text-dark", {
                   "is-invalid": errors.password
                 })}
                 autoComplete="current-password"

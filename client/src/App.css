@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Iceberg');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+.body {
+  background-color: black;
+}
+
+/* #mainTitle {
+  font-family: 'Iceberg', cursive;
+  color: #fff;
+  text-shadow: 0 0 5px #84FFFF, 0 0 10px #84FFFF, 0 0 15px #84FFFF, 0 0 20px #03A9F4, 0 0 30px #03A9F4, 0 0 40px #03A9F4, 0 0 50px #03A9F4, 0 0 75px #03A9F4;
+  font-size: 3.00rem;
+  padding-top: 20px;
+  letter-spacing: .06em;
+} */
+
+#mainTitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.50rem;
+  color: #2c2c2c;
+  letter-spacing: .05em;
+  text-shadow: 
+    4px 4px 0px #d5d5d5, 
+    7px 7px 0px rgba(0, 0, 0, 0.2);
+}

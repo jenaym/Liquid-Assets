@@ -8,15 +8,15 @@ import Grey from '@material-ui/core/colors/grey'
 
 // shadowGrey = grey[900]
 
-const nateStyles = {
-    title: {
-        fontFamily: 'Iceberg',
-        fontSize: 40,
-        textShadow: `4px 6px 2px ${Grey[900]}`
-        // backgroundImage: `url(${Background})`
-    }
+// const nateStyles = {
+//     title: {
+//         fontFamily: 'Iceberg',
+//         fontSize: 40,
+//         textShadow: `4px 6px 2px ${Grey[900]}`
+//         // backgroundImage: `url(${Background})`
+//     }
 
-}
+// }
 
 const NavbarComponent = (props) => {
     function onLogoutClick(e) {
@@ -62,7 +62,8 @@ const NavbarComponent = (props) => {
                             variant="title"
                             color="inherit"
                             className='Typography'
-                            style={nateStyles.title}
+                            // style={nateStyles.title}
+                            id="mainTitle"
                         >
                             LIQUID ASSETS
                         </Typography>
