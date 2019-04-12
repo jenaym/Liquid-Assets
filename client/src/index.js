@@ -12,25 +12,11 @@ import { setCurrentUser, logoutUser } from './store/actions/authActions';
 import { MuiThemeProvider, createMuiTheme, withTheme } from '@material-ui/core/styles';
 // import Hue from '@material-ui/core/colors/HUE'
 import { blueGrey, cyan, grey } from '@material-ui/core/colors';
-<<<<<<< HEAD
-=======
-import LiquidAssets from "./LiquidAssets";
-
-
-const primaryGrey = blueGrey[500];
-const secondaryCyan = cyan[400];
-const font1 = "'Iceberg', cursive";
-const font2 = "'Roboto', sans-serif";
->>>>>>> e103b486d41fc2a1001f6dd6c06e9eab4c88d4cd
 
 const theme = createMuiTheme ({
   palette: {
     primary: {
-<<<<<<< HEAD
       main: blueGrey[800]
-=======
-      main: grey[900],
->>>>>>> e103b486d41fc2a1001f6dd6c06e9eab4c88d4cd
     },
     secondary: {
       main: cyan[400],
@@ -40,7 +26,6 @@ const theme = createMuiTheme ({
     type: 'dark'
   },
   typography: {
-<<<<<<< HEAD
     fontFamily: [
       'Iceland',
       'Russo One',
@@ -57,10 +42,6 @@ const theme = createMuiTheme ({
       }
     }
   }
-=======
-    fontFamily: font2,
-  },
->>>>>>> e103b486d41fc2a1001f6dd6c06e9eab4c88d4cd
 
 })
 
