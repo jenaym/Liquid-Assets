@@ -8,15 +8,18 @@ import Grey from '@material-ui/core/colors/grey'
 
 // shadowGrey = grey[900]
 
-// const nateStyles = {
-//     title: {
-//         fontFamily: 'Iceberg',
-//         fontSize: 40,
-//         textShadow: `4px 6px 2px ${Grey[900]}`
-//         // backgroundImage: `url(${Background})`
-//     }
+const nateStyles = {
+    title: {
+        fontFamily: `Iceberg`,
+        color: '#fff',
+        fontSize: '3.00rem',
+        textShadow: '0 0 5px #84FFFF, 0 0 10px #84FFFF, 0 0 15px #84FFFF, 0 0 20px #03A9F4, 0 0 30px #03A9F4, 0 0 40px #03A9F4, 0 0 50px #03A9F4, 0 0 75px #03A9F4',
+        paddingTop: '20px',
+        letterSpacing: '.06em'
+        // backgroundImage: `url(${Background})`
+    }
 
-// }
+}
 
 const NavbarComponent = (props) => {
     function onLogoutClick(e) {
@@ -62,7 +65,7 @@ const NavbarComponent = (props) => {
                             variant="title"
                             color="inherit"
                             className='Typography'
-                            // style={nateStyles.title}
+                            style={nateStyles.title}
                             id="mainTitle"
                         >
                             LIQUID ASSETS
