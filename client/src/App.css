@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Iceberg');
+/* @import url('https://fonts.googleapis.com/css?family=Iceberg'); */
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 .body {
   background-color: black;
@@ -13,7 +13,7 @@
   letter-spacing: .06em;
 } */
 
-#mainTitle {
+/* #mainTitle {
   font-family: 'Orbitron', sans-serif;
   font-size: 2.50rem;
   color: #2c2c2c;
@@ -21,4 +21,4 @@
   text-shadow: 
     4px 4px 0px #d5d5d5, 
     7px 7px 0px rgba(0, 0, 0, 0.2);
-}
+} */
